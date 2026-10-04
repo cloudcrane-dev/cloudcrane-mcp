@@ -34,8 +34,12 @@ The client opens a CloudCrane page where a workspace owner picks the workspace
 and what the agent may do, then signs you in. Or install it from
 [Smithery](https://smithery.ai/servers/cloudcrane/workspace).
 
-Tested with **Cursor**, **Cline** and **Smithery**. Exact settings for each are
+Tested with **Claude**, **ChatGPT**, **Cursor**, **Cline** and **Smithery**. Exact settings for each are
 in [`llms-install.md`](llms-install.md), which an agent can follow to set it up.
+
+**Claude:** Settings → Connectors → Add custom connector, with the URL above. Keep *Sign in now* and *Register automatically*.
+
+**ChatGPT:** add a custom MCP server with the URL above and choose *OAuth*.
 
 **Cursor** (`~/.cursor/mcp.json`):
 
@@ -65,14 +69,21 @@ claude mcp add --transport http cloudcrane https://cloudcrane.ai/api/build/mcp \
 
 ### What it can do
 
-**Every connection reads:** `list_datasets`, `get_dataset`, `list_contracts`,
-`get_readiness`, `list_review_items`, `get_receipts`, `list_value_sets`, `get_run`.
-They run inside a read-only database transaction.
+**Every connection reads** (17 tools): `list_datasets`, `get_dataset`,
+`list_contracts`, `get_readiness`, `list_review_items`, `get_receipts`,
+`list_value_sets` and `get_run` to find its way around; `list_tools`,
+`list_scenarios`, `get_tool_insights`, `list_drift_alerts`, `get_usage` and
+`get_next_actions` to watch what is deployed and what needs doing;
+`list_approvals`, `get_approval` and `list_events` to follow up. They run inside
+a read-only database transaction.
 
-**A connection allowed to build also gets:** `create_dataset`, `create_field`,
-`update_field`, `create_value_set`, `import_value_set_version`, `start_run`,
-`publish_release`. Each goes through the same checks as the dashboard and is
-recorded as made by that connection.
+**A connection allowed to build also gets 13:** `create_dataset`,
+`create_field`, `update_field`, `create_value_set`, `import_value_set_version`,
+`start_run`, `publish_release` and `request_approval` to build; `deploy_tool`,
+`update_tool`, `create_tool_key`, `create_scenario` and `run_scenarios` to put it
+in front of users. Each goes through the same checks as the dashboard, is
+recorded as made by that connection, and is marked as changing data, so clients
+such as Claude ask you before each call.
 
 **What no connection can do:** publish past the accuracy gate, decide a review
 item, edit a stored value, withhold a record, delete anything, or remove a value

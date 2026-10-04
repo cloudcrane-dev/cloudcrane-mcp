@@ -47,7 +47,7 @@ Add this to `~/.cursor/mcp.json`:
 
 ## Checking it worked
 
-The server should show as connected with **8 tools** (read only) or **15 tools** (read and build). A first call to try is `list_datasets`, which takes no arguments.
+The server should show as connected with **17 tools** (read only) or **30 tools** (read and build). A first call to try is `list_datasets`, which takes no arguments.
 
 ## If it fails
 
