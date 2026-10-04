@@ -1,0 +1,10 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "ai.cloudcrane/workspace",
+  "title": "CloudCrane workspace",
+  "description": "Read and build a CloudCrane workspace: datasets, field contracts, review queue, receipts, runs.",
+  "version": "1.0.0",
+  "websiteUrl": "https://cloudcrane.ai/docs/build-mcp",
+  "repository": { "url": "https://github.com/cloudcrane-dev/cloudcrane-mcp", "source": "github" },
+  "remotes": [{ "type": "streamable-http", "url": "https://cloudcrane.ai/api/build/mcp" }]
+}
