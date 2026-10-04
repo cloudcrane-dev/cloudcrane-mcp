@@ -1,6 +1,7 @@
 # CloudCrane MCP
 
 [![smithery badge](https://smithery.ai/badge/cloudcrane/workspace)](https://smithery.ai/servers/cloudcrane/workspace)
+[![CloudCrane workspace MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace/badges/score.svg)](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace)
 
 Connect your AI agent to [CloudCrane](https://cloudcrane.ai) over MCP.
 
