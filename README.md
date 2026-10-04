@@ -33,6 +33,21 @@ The client opens a CloudCrane page where a workspace owner picks the workspace
 and what the agent may do, then signs you in. Or install it from
 [Smithery](https://smithery.ai/servers/cloudcrane/workspace).
 
+Tested with **Cursor**, **Cline** and **Smithery**. Exact settings for each are
+in [`llms-install.md`](llms-install.md), which an agent can follow to set it up.
+
+**Cursor** (`~/.cursor/mcp.json`):
+
+```json
+{ "mcpServers": { "cloudcrane": { "url": "https://cloudcrane.ai/api/build/mcp" } } }
+```
+
+**Cline** (`cline_mcp_settings.json`):
+
+```json
+{ "mcpServers": { "cloudcrane": { "transport": { "type": "streamableHttp", "url": "https://cloudcrane.ai/api/build/mcp" } } } }
+```
+
 The page shows where it will send you back before anything else, because an
 app's name is only what it calls itself. It starts on read only. Each app you
 approve shows up in the dashboard under **Developers**, where you can revoke it.
