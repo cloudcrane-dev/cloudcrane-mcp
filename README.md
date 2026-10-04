@@ -5,6 +5,8 @@
 
 Connect your AI agent to [CloudCrane](https://cloudcrane.ai) over MCP.
 
+**In Claude:** find [CloudCrane in the connectors directory](https://claude.ai/directory/cloudcrane) and connect.
+
 CloudCrane turns a messy catalog into data an agent can be trusted with. Rules
 run before any model, the model may only answer from values you allowed, and
 every value carries a receipt saying how it was decided. Safety exclusions are
@@ -37,7 +39,7 @@ and what the agent may do, then signs you in. Or install it from
 Tested with **Claude**, **ChatGPT**, **Cursor**, **Cline** and **Smithery**. Exact settings for each are
 in [`llms-install.md`](llms-install.md), which an agent can follow to set it up.
 
-**Claude:** Settings → Connectors → Add custom connector, with the URL above. Keep *Sign in now* and *Register automatically*.
+**Claude:** connect from the [connectors directory](https://claude.ai/directory/cloudcrane), or Settings → Connectors → Add custom connector with the URL above, keeping *Sign in now* and *Register automatically*.
 
 **ChatGPT:** add a custom MCP server with the URL above and choose *OAuth*.
 
