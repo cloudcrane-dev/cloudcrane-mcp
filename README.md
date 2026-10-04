@@ -78,7 +78,7 @@ item, edit a stored value, withhold a record, delete anything, or remove a value
 from a safety field. Those stay with a person, because a receipt names who decided.
 
 Imported record contents stay hidden unless the owner turns them on. The
-workspace MCP comes with the Team plan.
+workspace MCP is included in every CloudCrane plan, Free too.
 
 Full reference: [cloudcrane.ai/docs/build-mcp](https://cloudcrane.ai/docs/build-mcp).
 
@@ -123,7 +123,6 @@ Full reference: [cloudcrane.ai/docs/deploy](https://cloudcrane.ai/docs/deploy).
 - **406:** MCP requires `Accept: application/json, text/event-stream` on every POST, even though these endpoints never send a stream.
 - **405 on GET:** the endpoints are stateless and offer no SSE stream, so only POST is allowed. A client that silently falls back to SSE connects but lists no tools.
 - **403 on the workspace MCP:** it opens a whole workspace, so a request from a browser (any request with an `Origin` header) is refused. Call it from a server or a desktop client.
-- **402 on the workspace MCP:** the workspace isn't on a plan that includes it.
 
 ## Links
 
