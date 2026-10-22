@@ -1,45 +1,49 @@
 # CloudCrane MCP
 
 [![smithery badge](https://smithery.ai/badge/cloudcrane/workspace)](https://smithery.ai/servers/cloudcrane/workspace)
-[![CloudCrane workspace MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace/badges/score.svg)](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace)
+[![CloudCrane MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace/badges/score.svg)](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace)
 
-Connect your AI agent to [CloudCrane](https://cloudcrane.ai) over MCP.
+Ask your assistant for an app, and it lands on your phone's home screen.
 
-**In Claude:** find [CloudCrane in the connectors directory](https://claude.ai/directory/cloudcrane) and connect.
+Your assistant writes a small app for you (a habit tracker, a spending log, a
+packing checklist, a workout timer) and publishes it with
+[CloudCrane](https://cloudcrane.ai). You get a link. Open it on your phone, add
+it to your home screen, and it's an app of its own: its own icon, full screen,
+working offline.
 
-CloudCrane turns a messy catalog into data an agent can be trusted with. Rules
-run before any model, the model may only answer from values you allowed, and
-every value carries a receipt saying how it was decided. Safety exclusions are
-enforced in the database query, so a record whose value is unknown is left out
-rather than assumed safe.
+- **Your data stays on your phone.** What you save in an app is kept on the
+  phone, never on our servers.
+- **Change it by asking.** "Add a reading habit", "make the buttons bigger":
+  your assistant updates the app, and the new version arrives the next time
+  you open it, with everything you saved still there.
+- **Every version is kept.** Go back to any earlier version, or delete an app
+  for good.
+- **Each app is locked down.** Every app runs at its own address, can't talk
+  to other websites, and is checked before it's published: no password or card
+  fields, no forms that send your entries anywhere.
 
-There are two MCP endpoints. Both speak **Streamable HTTP** (stateless, no SSE stream).
+## Connect
 
-| Endpoint | Signs in with | What it opens |
-|---|---|---|
-| `https://cloudcrane.ai/api/build/mcp` | Your CloudCrane account (OAuth), or a build key `cc_build_…` | Your workspace, for your own agent while you build |
-| `https://cloudcrane.ai/api/mcp/<tool>` | A tool key `cc_live_…` | One deployed tool, for your end users' agents |
-
-## The workspace MCP
-
-Let your own agent read what you are building and, if you allow it, help build it.
-
-### Connect with OAuth
-
-In an MCP client that supports OAuth sign-in, add the URL with no key:
+One remote MCP server, **Streamable HTTP** (stateless, no SSE stream), with
+OAuth sign-in and dynamic client registration. Nothing to install.
 
 ```
 https://cloudcrane.ai/api/build/mcp
 ```
 
-The client opens a CloudCrane page where a workspace owner picks the workspace
-and what the agent may do, then signs you in. Or install it from
-[Smithery](https://smithery.ai/servers/cloudcrane/workspace).
+(`https://cloudcrane.ai/api/apps/mcp` is the same server.)
 
-Tested with **Claude**, **ChatGPT**, **Cursor**, **Cline** and **Smithery**. Exact settings for each are
-in [`llms-install.md`](llms-install.md), which an agent can follow to set it up.
+Add the URL with no key. The client opens a CloudCrane page where you sign in
+(Google or an emailed code), pick your workspace and choose what the assistant
+may do: **Read only**, or **Read and build**, which also lets it make and change
+your apps. You can sign an assistant out at any time from **My apps** in the
+dashboard.
 
-**Claude:** connect from the [connectors directory](https://claude.ai/directory/cloudcrane), or Settings → Connectors → Add custom connector with the URL above, keeping *Sign in now* and *Register automatically*.
+Sign-in has been tested with **Claude**, **ChatGPT**, **Cursor**, **Cline** and
+**Smithery**. Exact settings for each are in [`llms-install.md`](llms-install.md), which an
+agent can follow to set it up.
+
+**Claude:** Settings → Connectors → Add custom connector with the URL above.
 
 **ChatGPT:** add a custom MCP server with the URL above and choose *OAuth*.
 
@@ -55,94 +59,39 @@ in [`llms-install.md`](llms-install.md), which an agent can follow to set it up.
 { "mcpServers": { "cloudcrane": { "transport": { "type": "streamableHttp", "url": "https://cloudcrane.ai/api/build/mcp" } } } }
 ```
 
-The page shows where it will send you back before anything else, because an
-app's name is only what it calls itself. It starts on read only. Each app you
-approve shows up in the dashboard under **Developers**, where you can revoke it.
+## Tools
 
-### Or with a build key
+| Tool | What it does | Needs |
+|---|---|---|
+| `list_apps` | Your apps, with their install links | Read |
+| `get_app` | An app's code, to read or change it | Read |
+| `list_versions` | Every version of an app, and which one is installed | Read |
+| `publish_app` | Publishes a new app and returns its install link | Build |
+| `update_app` | Publishes a new version of an app | Build |
+| `rollback_app` | Serves an earlier version again | Build |
+| `delete_app` | Deletes an app and every version of it | Build |
 
-For a client without OAuth, an owner makes a build key under **Developers** and
-sends it as a header:
+The server tells the assistant how to write an app that works here when it
+connects: one self-contained HTML file, mobile first, data kept on the phone,
+and saved data carried across every update. The tools that change apps are
+marked as such, so clients like Claude ask you before each call.
 
-```sh
-claude mcp add --transport http cloudcrane https://cloudcrane.ai/api/build/mcp \
-  --header "Authorization: Bearer $CLOUDCRANE_BUILD_KEY"
-```
+## Try
 
-### What it can do
-
-**Every connection reads** (17 tools): `list_datasets`, `get_dataset`,
-`list_contracts`, `get_readiness`, `list_review_items`, `get_receipts`,
-`list_value_sets` and `get_run` to find its way around; `list_tools`,
-`list_scenarios`, `get_tool_insights`, `list_drift_alerts`, `get_usage` and
-`get_next_actions` to watch what is deployed and what needs doing;
-`list_approvals`, `get_approval` and `list_events` to follow up. They run inside
-a read-only database transaction.
-
-**A connection allowed to build also gets 13:** `create_dataset`,
-`create_field`, `update_field`, `create_value_set`, `import_value_set_version`,
-`start_run`, `publish_release` and `request_approval` to build; `deploy_tool`,
-`update_tool`, `create_tool_key`, `create_scenario` and `run_scenarios` to put it
-in front of users. Each goes through the same checks as the dashboard, is
-recorded as made by that connection, and is marked as changing data, so clients
-such as Claude ask you before each call.
-
-**What no connection can do:** publish past the accuracy gate, decide a review
-item, edit a stored value, withhold a record, delete anything, or remove a value
-from a safety field. Those stay with a person, because a receipt names who decided.
-
-Imported record contents stay hidden unless the owner turns them on. The
-workspace MCP is included in every CloudCrane plan, Free too.
-
-Full reference: [cloudcrane.ai/docs/build-mcp](https://cloudcrane.ai/docs/build-mcp).
-
-## A deployed tool
-
-Each tool you deploy is its own MCP server. Your agent sees `search_<tool>` and
-`get_<tool>`, plus `find_values` when the tool has value set fields. Their input
-schema is generated from your contracts, so the agent picks values from an enum
-of your list and cannot ask for one you never defined.
-
-**Claude Code**
-
-```sh
-claude mcp add --transport http catalog https://cloudcrane.ai/api/mcp/catalog \
-  --header "Authorization: Bearer $CLOUDCRANE_TOOL_KEY"
-```
-
-**Claude Desktop, Cursor, Windsurf**
-
-```json
-{
-  "mcpServers": {
-    "catalog": {
-      "url": "https://cloudcrane.ai/api/mcp/catalog",
-      "headers": { "Authorization": "Bearer cc_live_..." }
-    }
-  }
-}
-```
-
-Some clients call the block `servers` instead of `mcpServers`, and some want `"type": "http"` next to the url.
-
-- **n8n:** MCP Client Tool node, transport *HTTP Streamable*, Bearer authentication.
-- **LangChain:** `MultiServerMCPClient` with transport `streamable_http` and a headers dict.
-- **OpenAI Agents SDK:** `MCPServerStreamableHttp` with the url and headers.
-
-The same tool also answers plain REST at `POST /api/v1/tools/<tool>/search`.
-Full reference: [cloudcrane.ai/docs/deploy](https://cloudcrane.ai/docs/deploy).
+1. "Make me a habit tracker for water, reading and the gym, and put it on my phone."
+2. "Add a 'walk 20 minutes' habit to my Habits app."
+3. "My packing list app: go back to the version from before the last change."
 
 ## Things that look like a broken server
 
-- **406:** MCP requires `Accept: application/json, text/event-stream` on every POST, even though these endpoints never send a stream.
-- **405 on GET:** the endpoints are stateless and offer no SSE stream, so only POST is allowed. A client that silently falls back to SSE connects but lists no tools.
-- **403 on the workspace MCP:** it opens a whole workspace, so a request from a browser (any request with an `Origin` header) is refused. Call it from a server or a desktop client.
+- **406:** MCP requires `Accept: application/json, text/event-stream` on every POST, even though this server never sends a stream.
+- **405 on GET:** the server is stateless and offers no SSE stream, so only POST is allowed. A client that silently falls back to SSE connects but lists no tools.
+- **403:** a request from a browser (any request with an `Origin` header) is refused. Call it from a server or a desktop client.
 
 ## Links
 
+- [CloudCrane](https://cloudcrane.ai)
 - [Docs](https://cloudcrane.ai/docs)
-- [Playground](https://cloudcrane.ai/playground): the pipeline in your browser, no sign-up
-- [Integrations](https://cloudcrane.ai/integrations)
 
 This repository holds documentation and the registry entry (`server.json`), not
 the server's source.

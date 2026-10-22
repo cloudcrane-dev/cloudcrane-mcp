@@ -40,14 +40,14 @@ Add this to `~/.cursor/mcp.json`:
 
 ## What the user does in the browser
 
-1. Signs in to CloudCrane (Google or an emailed code), if not already signed in.
-2. Picks the workspace. They must be an owner of it. Every CloudCrane plan, Free included, includes the workspace MCP; signing up is free at https://cloudcrane.ai.
-3. Chooses what the agent may do: **Read only** (the default) or **Read and build** (offered only if the client asked for it).
+1. Signs in to CloudCrane (Google or an emailed code), if not already signed in. Signing up is free at https://cloudcrane.ai.
+2. Picks the workspace. They must be an owner of it.
+3. Chooses what the agent may do: **Read only** (the default) or **Read and build**, which also makes and changes their apps (offered only if the client asked for it).
 4. Clicks **Connect**.
 
 ## Checking it worked
 
-The server should show as connected with **17 tools** (read only) or **30 tools** (read and build). A first call to try is `list_datasets`, which takes no arguments.
+The server should show as connected with **3 tools** (read only: `list_apps`, `get_app`, `list_versions`) or **7 tools** (read and build: also `publish_app`, `update_app`, `rollback_app`, `delete_app`). A first call to try is `list_apps`, which takes no arguments.
 
 ## If it fails
 
@@ -56,4 +56,4 @@ The server should show as connected with **17 tools** (read only) or **30 tools*
 - **"This request has expired or was already decided":** the sign-in page is more than 10 minutes old. Start the connection again from the client.
 - **Connected but 0 tools:** the client fell back to the legacy SSE transport. This server is Streamable HTTP only.
 
-More: https://cloudcrane.ai/docs/build-mcp
+More: https://cloudcrane.ai/docs
