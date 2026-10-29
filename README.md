@@ -5,22 +5,15 @@
 
 Ask your assistant for an app, and it lands on your phone's home screen.
 
-Your assistant writes a small app for you (a habit tracker, a spending log, a
-packing checklist, a workout timer) and publishes it with
-[CloudCrane](https://cloudcrane.ai). You get a link. Open it on your phone, add
-it to your home screen, and it's an app of its own: its own icon, full screen,
-working offline.
+Your assistant writes a small app (a habit tracker, a spending log, a workout
+timer) and publishes it with [CloudCrane](https://cloudcrane.ai). Open the link
+on your phone, add it to your home screen: its own icon, full screen, offline.
 
-- **Your data stays on your phone.** What you save in an app is kept on the
-  phone, never on our servers.
-- **Change it by asking.** "Add a reading habit", "make the buttons bigger":
-  your assistant updates the app, and the new version arrives the next time
-  you open it, with everything you saved still there.
-- **Every version is kept.** Go back to any earlier version, or delete an app
-  for good.
-- **Each app is locked down.** Every app runs at its own address, can't talk
-  to other websites, and is checked before it's published: no password or card
-  fields, no forms that send your entries anywhere.
+- **Your data stays on your phone.** An app reaches only the sites it lists, and you see them first.
+- **Every app has a blueprint.** What it does, keeps and promises, in plain words.
+- **Checked, and with testing on, proven.** No password or card fields, no undeclared camera or location; tests run in a real browser before a version is kept.
+- **Every version is kept.** Change it by asking; go back to any version.
+- **Build your own from anyone's.** Public apps are on [Explore](https://cloudcrane.ai/explore).
 
 ## Connect
 
@@ -36,7 +29,7 @@ https://cloudcrane.ai/api/build/mcp
 Add the URL with no key. The client opens a CloudCrane page where you sign in
 (Google or an emailed code), pick your workspace and choose what the assistant
 may do: **Read only**, or **Read and build**, which also lets it make and change
-your apps. You can sign an assistant out at any time from **My apps** in the
+your apps. You can sign an assistant out at any time in **Settings → Assistants** in the
 dashboard.
 
 Sign-in has been tested with **Claude**, **ChatGPT**, **Cursor**, **Cline** and
@@ -64,17 +57,21 @@ agent can follow to set it up.
 | Tool | What it does | Needs |
 |---|---|---|
 | `list_apps` | Your apps, with their install links | Read |
-| `get_app` | An app's code, to read or change it | Read |
-| `list_versions` | Every version of an app, and which one is installed | Read |
-| `publish_app` | Publishes a new app and returns its install link | Build |
-| `update_app` | Publishes a new version of an app | Build |
+| `get_app` | An app's code | Read |
+| `find_in_app` | The lines of an app's code that match, to change part of a big app | Read |
+| `get_spec` | An app's blueprint and tests | Read |
+| `list_versions` | Every version, and which one is current | Read |
+| `list_remixes`, `get_remix` | Apps you chose to build your own of on Explore | Read |
+| `publish_app` | A new app, with its blueprint; returns its install link | Build |
+| `update_app` | A new version: the whole file, or just the edits | Build |
+| `rename_app` | A new name; the address stays | Build |
 | `rollback_app` | Serves an earlier version again | Build |
-| `delete_app` | Deletes an app and every version of it | Build |
+| `delete_app` | Deletes an app and every version | Build |
+| `publish_spec`, `update_spec` | An app from a [Blackbox](https://github.com/cloudcrane-dev/blackbox) spec: no code, built the same every time | Build |
 
-The server tells the assistant how to write an app that works here when it
-connects: one self-contained HTML file, mobile first, data kept on the phone,
-and saved data carried across every update. The tools that change apps are
-marked as such, so clients like Claude ask you before each call.
+When it connects, the server tells the assistant how to write an app that
+works here. Tools that change apps are marked so, and clients like Claude ask
+before each call.
 
 ## Try
 

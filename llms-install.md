@@ -47,7 +47,7 @@ Add this to `~/.cursor/mcp.json`:
 
 ## Checking it worked
 
-The server should show as connected with **3 tools** (read only: `list_apps`, `get_app`, `list_versions`) or **7 tools** (read and build: also `publish_app`, `update_app`, `rollback_app`, `delete_app`). A first call to try is `list_apps`, which takes no arguments.
+The server should show as connected with **7 tools** (read only: `list_apps`, `get_app`, `find_in_app`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`) or **14 tools** (read and build: also `publish_app`, `update_app`, `rename_app`, `rollback_app`, `delete_app`, `publish_spec`, `update_spec`). A first call to try is `list_apps`, which takes no arguments.
 
 ## If it fails
 
