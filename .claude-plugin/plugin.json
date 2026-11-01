@@ -7,7 +7,7 @@
     "name": "CloudCrane",
     "url": "https://cloudcrane.ai"
   },
-  "homepage": "https://cloudcrane.ai/docs/connect",
+  "homepage": "https://cloudcrane.ai",
   "repository": "https://github.com/cloudcrane-dev/cloudcrane-mcp",
   "license": "MIT",
   "keywords": [
@@ -18,5 +18,8 @@
     "offline"
   ],
   "icon": ".claude-plugin/icon.png",
-  "privacyPolicyUrl": "https://cloudcrane.ai/privacy"
+  "privacyPolicyUrl": "https://cloudcrane.ai/privacy",
+  "documentationUrl": "https://cloudcrane.ai/docs/connect",
+  "supportUrl": "https://cloudcrane.ai/docs/troubleshooting",
+  "termsOfServiceUrl": "https://cloudcrane.ai/terms"
 }
