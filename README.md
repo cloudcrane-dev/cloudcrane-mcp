@@ -1,6 +1,5 @@
 # CloudCrane MCP
 
-[![smithery badge](https://smithery.ai/badge/cloudcrane/workspace)](https://smithery.ai/servers/cloudcrane/workspace)
 [![CloudCrane MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace/badges/score.svg)](https://glama.ai/mcp/connectors/ai.cloudcrane/workspace)
 
 Ask your assistant for an app, and it lands on your phone's home screen.
@@ -32,8 +31,7 @@ may do: **Read only**, or **Read and build**, which also lets it make and change
 your apps. You can sign an assistant out at any time in **Settings → Assistants** in the
 dashboard.
 
-Sign-in has been tested with **Claude**, **ChatGPT**, **Cursor**, **Cline** and
-**Smithery**. Exact settings for each are in [`llms-install.md`](llms-install.md), which an
+Sign-in has been tested with **Claude**, **ChatGPT**, **Cursor** and **Cline**. Exact settings for each are in [`llms-install.md`](llms-install.md), which an
 agent can follow to set it up.
 
 **Claude:** Settings → Connectors → Add custom connector with the URL above.
