@@ -2,7 +2,7 @@
   "mcpServers": {
     "cloudcrane": {
       "type": "http",
-      "url": "https://cloudcrane.ai/api/apps/mcp"
+      "url": "https://cloudcrane.ai/api/build/mcp"
     }
   }
 }
