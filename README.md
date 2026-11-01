@@ -26,10 +26,9 @@ https://cloudcrane.ai/api/apps/mcp
 (`https://cloudcrane.ai/api/build/mcp`, the older address, is the same server.)
 
 Add the URL with no key. The client opens a CloudCrane page where you sign in
-(Google or an emailed code), pick your workspace and choose what the assistant
-may do: **Read only**, or **Read and build**, which also lets it make and change
-your apps. You can sign an assistant out at any time in **Settings → Assistants** in the
-dashboard.
+(Google or an emailed code) and pick your workspace. Once you connect, the
+assistant can see, make, change, roll back and delete your apps. You can sign an
+assistant out at any time in the dashboard.
 
 Sign-in has been tested with **Claude**, **ChatGPT**, **Cursor** and **Cline**. Exact settings for each are in [`llms-install.md`](llms-install.md), which an
 agent can follow to set it up.
@@ -62,22 +61,22 @@ Then run `/mcp auth cloudcrane` in Gemini CLI to sign in.
 
 ## Tools
 
-| Tool | What it does | Needs |
-|---|---|---|
-| `list_apps` | Your apps, with their install links | Read |
-| `get_app` | An app's code | Read |
-| `find_in_app` | The lines of an app's code that match, to change part of a big app | Read |
-| `get_spec` | An app's blueprint and tests | Read |
-| `list_versions` | Every version, and which one is current | Read |
-| `list_remixes`, `get_remix` | Apps you chose to build your own of on Explore | Read |
-| `get_spec_guide` | How to write an app spec: the format, the catalog, worked examples | Read |
-| `check_publish` | A dry run of a publish: every problem, nothing stored | Read |
-| `publish_app` | A new app, with its blueprint; returns its install link | Build |
-| `update_app` | A new version: the whole file, or just the edits | Build |
-| `rename_app` | A new name; the address stays | Build |
-| `rollback_app` | Serves an earlier version again | Build |
-| `delete_app` | Deletes an app and every version | Build |
-| `publish_spec`, `update_spec` | An app from a [Blackbox](https://github.com/cloudcrane-dev/blackbox) spec: no code, built the same every time | Build |
+| Tool | What it does |
+|---|---|
+| `list_apps` | Your apps, with their install links |
+| `get_app` | An app's code |
+| `find_in_app` | The lines of an app's code that match, to change part of a big app |
+| `get_spec` | An app's blueprint and tests |
+| `list_versions` | Every version, and which one is current |
+| `list_remixes`, `get_remix` | Apps you chose to build your own of on Explore |
+| `get_spec_guide` | How to write an app spec: the format, the catalog, worked examples |
+| `check_publish` | A dry run of a publish: every problem, nothing stored |
+| `publish_app` | A new app, with its blueprint; returns its install link |
+| `update_app` | A new version: the whole file, or just the edits |
+| `rename_app` | A new name; the address stays |
+| `rollback_app` | Serves an earlier version again |
+| `delete_app` | Deletes an app and every version |
+| `publish_spec`, `update_spec` | An app from a [Blackbox](https://github.com/cloudcrane-dev/blackbox) spec: no code, built the same every time |
 
 When it connects, the server tells the assistant how to write an app that
 works here. Tools that change apps are marked so, and clients like Claude ask

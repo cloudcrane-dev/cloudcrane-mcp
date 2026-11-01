@@ -42,12 +42,12 @@ Add this to `~/.cursor/mcp.json`:
 
 1. Signs in to CloudCrane (Google or an emailed code), if not already signed in. Signing up is free at https://cloudcrane.ai.
 2. Picks the workspace. They must be an owner of it.
-3. Chooses what the agent may do: **Read only** (the default) or **Read and build**, which also makes and changes their apps (offered only if the client asked for it).
+3. Clicks **Connect**. The agent can then see, make, change, roll back and delete their apps.
 4. Clicks **Connect**.
 
 ## Checking it worked
 
-The server should show as connected with **9 tools** (read only: `list_apps`, `get_app`, `find_in_app`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`, `get_spec_guide`, `check_publish`) or **16 tools** (read and build: also `publish_app`, `update_app`, `rename_app`, `rollback_app`, `delete_app`, `publish_spec`, `update_spec`). A first call to try is `list_apps`, which takes no arguments.
+The server should show as connected with **16 tools**: `list_apps`, `get_app`, `find_in_app`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`, `get_spec_guide`, `check_publish`, `publish_app`, `update_app`, `rename_app`, `rollback_app`, `delete_app`, `publish_spec`, `update_spec`. A first call to try is `list_apps`, which takes no arguments.
 
 ## If it fails
 
