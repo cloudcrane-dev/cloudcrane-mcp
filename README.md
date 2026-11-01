@@ -50,6 +50,8 @@ agent can follow to set it up.
 { "mcpServers": { "cloudcrane": { "transport": { "type": "streamableHttp", "url": "https://cloudcrane.ai/api/apps/mcp" } } } }
 ```
 
+**Claude plugin:** this repo is also a plugin. It adds nothing but the connection to the server above: no hooks, scripts or local code. What you ask for, and the apps your assistant writes, go to CloudCrane so it can check and host them; what you save in an app stays on your phone.
+
 **Gemini CLI** (an extension, from this repo):
 
 ```

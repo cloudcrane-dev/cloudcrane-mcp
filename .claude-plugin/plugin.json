@@ -1,0 +1,11 @@
+{
+  "name": "cloudcrane",
+  "displayName": "CloudCrane",
+  "version": "2.0.1",
+  "description": "Ask Claude for an app and it lands on your phone: offline, with what you save kept on the phone.",
+  "author": { "name": "CloudCrane", "url": "https://cloudcrane.ai" },
+  "homepage": "https://cloudcrane.ai/docs/connect",
+  "repository": "https://github.com/cloudcrane-dev/cloudcrane-mcp",
+  "license": "MIT",
+  "keywords": ["apps", "phone", "personal-apps", "pwa", "offline"]
+}
