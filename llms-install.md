@@ -3,7 +3,7 @@
 This is a **remote** MCP server. There is nothing to download, build or run:
 add one entry to the client's MCP settings and sign in.
 
-- **URL:** `https://cloudcrane.ai/api/build/mcp`
+- **URL:** `https://cloudcrane.ai/api/apps/mcp`
 - **Transport:** Streamable HTTP
 - **Authentication:** OAuth, with dynamic client registration. Do **not** ask the user for an API key and do **not** add an `Authorization` header.
 
@@ -17,7 +17,7 @@ Add this to `cline_mcp_settings.json` under `mcpServers`:
     "cloudcrane": {
       "transport": {
         "type": "streamableHttp",
-        "url": "https://cloudcrane.ai/api/build/mcp"
+        "url": "https://cloudcrane.ai/api/apps/mcp"
       }
     }
   }
@@ -33,7 +33,7 @@ Add this to `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "cloudcrane": { "url": "https://cloudcrane.ai/api/build/mcp" }
+    "cloudcrane": { "url": "https://cloudcrane.ai/api/apps/mcp" }
   }
 }
 ```
@@ -47,7 +47,7 @@ Add this to `~/.cursor/mcp.json`:
 
 ## Checking it worked
 
-The server should show as connected with **7 tools** (read only: `list_apps`, `get_app`, `find_in_app`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`) or **14 tools** (read and build: also `publish_app`, `update_app`, `rename_app`, `rollback_app`, `delete_app`, `publish_spec`, `update_spec`). A first call to try is `list_apps`, which takes no arguments.
+The server should show as connected with **9 tools** (read only: `list_apps`, `get_app`, `find_in_app`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`, `get_spec_guide`, `check_publish`) or **16 tools** (read and build: also `publish_app`, `update_app`, `rename_app`, `rollback_app`, `delete_app`, `publish_spec`, `update_spec`). A first call to try is `list_apps`, which takes no arguments.
 
 ## If it fails
 

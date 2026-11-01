@@ -3,8 +3,16 @@
   "name": "ai.cloudcrane/workspace",
   "title": "CloudCrane",
   "description": "Ask your assistant for an app and it lands on your phone: offline, data on the phone.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "websiteUrl": "https://cloudcrane.ai",
-  "repository": { "url": "https://github.com/cloudcrane-dev/cloudcrane-mcp", "source": "github" },
-  "remotes": [{ "type": "streamable-http", "url": "https://cloudcrane.ai/api/build/mcp" }]
+  "repository": {
+    "url": "https://github.com/cloudcrane-dev/cloudcrane-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cloudcrane.ai/api/apps/mcp"
+    }
+  ]
 }

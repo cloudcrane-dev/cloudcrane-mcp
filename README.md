@@ -13,7 +13,7 @@ on your phone, add it to your home screen: its own icon, full screen, offline.
 - **Every app has a blueprint.** What it does, keeps and promises, in plain words.
 - **Checked, and with testing on, proven.** No password or card fields, no undeclared camera or location; tests run in a real browser before a version is kept.
 - **Every version is kept.** Change it by asking; go back to any version.
-- **Build your own from anyone's.** Public apps are on [Explore](https://cloudcrane.ai/explore).
+- **Build your own from anyone's.** Public apps are on [Explore](https://cloudcrane.ai/#explore).
 
 ## Connect
 
@@ -21,10 +21,10 @@ One remote MCP server, **Streamable HTTP** (stateless, no SSE stream), with
 OAuth sign-in and dynamic client registration. Nothing to install.
 
 ```
-https://cloudcrane.ai/api/build/mcp
+https://cloudcrane.ai/api/apps/mcp
 ```
 
-(`https://cloudcrane.ai/api/apps/mcp` is the same server.)
+(`https://cloudcrane.ai/api/build/mcp`, the older address, is the same server.)
 
 Add the URL with no key. The client opens a CloudCrane page where you sign in
 (Google or an emailed code), pick your workspace and choose what the assistant
@@ -43,14 +43,22 @@ agent can follow to set it up.
 **Cursor** (`~/.cursor/mcp.json`):
 
 ```json
-{ "mcpServers": { "cloudcrane": { "url": "https://cloudcrane.ai/api/build/mcp" } } }
+{ "mcpServers": { "cloudcrane": { "url": "https://cloudcrane.ai/api/apps/mcp" } } }
 ```
 
 **Cline** (`cline_mcp_settings.json`):
 
 ```json
-{ "mcpServers": { "cloudcrane": { "transport": { "type": "streamableHttp", "url": "https://cloudcrane.ai/api/build/mcp" } } } }
+{ "mcpServers": { "cloudcrane": { "transport": { "type": "streamableHttp", "url": "https://cloudcrane.ai/api/apps/mcp" } } } }
 ```
+
+**Gemini CLI** (an extension, from this repo):
+
+```
+gemini extensions install https://github.com/cloudcrane-dev/cloudcrane-mcp
+```
+
+Then run `/mcp auth cloudcrane` in Gemini CLI to sign in.
 
 ## Tools
 
@@ -62,6 +70,8 @@ agent can follow to set it up.
 | `get_spec` | An app's blueprint and tests | Read |
 | `list_versions` | Every version, and which one is current | Read |
 | `list_remixes`, `get_remix` | Apps you chose to build your own of on Explore | Read |
+| `get_spec_guide` | How to write an app spec: the format, the catalog, worked examples | Read |
+| `check_publish` | A dry run of a publish: every problem, nothing stored | Read |
 | `publish_app` | A new app, with its blueprint; returns its install link | Build |
 | `update_app` | A new version: the whole file, or just the edits | Build |
 | `rename_app` | A new name; the address stays | Build |
