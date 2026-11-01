@@ -43,7 +43,6 @@ Add this to `~/.cursor/mcp.json`:
 1. Signs in to CloudCrane (Google or an emailed code), if not already signed in. Signing up is free at https://cloudcrane.ai.
 2. Picks the workspace. They must be an owner of it.
 3. Clicks **Connect**. The agent can then see, make, change, roll back and delete their apps.
-4. Clicks **Connect**.
 
 ## Checking it worked
 
