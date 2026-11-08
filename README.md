@@ -66,10 +66,18 @@ Then run `/mcp auth cloudcrane` in Gemini CLI to sign in.
 | `list_apps` | Your apps, with their install links |
 | `get_app` | An app's code |
 | `find_in_app` | The lines of an app's code that match, to change part of a big app |
+| `look_at_app` | A screenshot of any version as a phone opens it, with what its code threw |
+| `try_app` | Runs a few taps and checks in a real browser, against a version or unpublished code; nothing stored |
+| `diff_versions` | What changed between two versions: the blueprint by section, and the code |
+| `get_problems` | What an app's code threw on phones, in the last 30 days |
 | `get_spec` | An app's blueprint and tests |
 | `list_versions` | Every version, and which one is current |
 | `list_remixes`, `get_remix` | Apps you chose to build your own of on Explore |
+| `search_explore`, `remix_app` | Finds public apps on Explore, and starts yours from one |
+| `get_stats` | Visits, upvotes, saves, rating and remixes for your apps |
+| `get_connections` | Which of your apps take things from others, and which hand them over |
 | `get_spec_guide` | How to write an app spec: the format, the catalog, worked examples |
+| `get_design_guide`, `get_port_guide` | How to make it feel like a phone app; how to bring an existing Android, iPhone or web app |
 | `check_publish` | A dry run of a publish: every problem, nothing stored |
 | `publish_app` | A new app, with its blueprint; returns its install link |
 | `update_app` | A new version: the whole file, or just the edits |
@@ -82,11 +90,16 @@ When it connects, the server tells the assistant how to write an app that
 works here. Tools that change apps are marked so, and clients like Claude ask
 before each call.
 
+It also offers prompts, which Claude shows in its `/` menu: `build-app`,
+`fix-problems`, `port-app`, `remix` and `connect-apps`.
+
 ## Try
 
 1. "Make me a habit tracker for water, reading and the gym, and put it on my phone."
 2. "Add a 'walk 20 minutes' habit to my Habits app."
 3. "My packing list app: go back to the version from before the last change."
+4. "Is there already a recipe app on Explore I could start from?"
+5. "Let my recipe app send its ingredients to my shopping list."
 
 ## Things that look like a broken server
 
