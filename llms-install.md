@@ -46,7 +46,7 @@ Add this to `~/.cursor/mcp.json`:
 
 ## Checking it worked
 
-The server should show as connected with **16 tools**: `list_apps`, `get_app`, `find_in_app`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`, `get_spec_guide`, `check_publish`, `publish_app`, `update_app`, `rename_app`, `rollback_app`, `delete_app`, `publish_spec`, `update_spec`. A first call to try is `list_apps`, which takes no arguments.
+The server should show as connected with **26 tools**: `list_apps`, `get_app`, `find_in_app`, `look_at_app`, `try_app`, `diff_versions`, `get_problems`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`, `search_explore`, `get_stats`, `get_connections`, `get_spec_guide`, `get_design_guide`, `get_port_guide`, `check_publish`, `publish_app`, `update_app`, `publish_spec`, `update_spec`, `rename_app`, `rollback_app`, `delete_app`, `remix_app`, and 5 prompts. A first call to try is `list_apps`, which takes no arguments.
 
 ## If it fails
 
