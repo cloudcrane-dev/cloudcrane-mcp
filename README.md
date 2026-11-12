@@ -30,12 +30,20 @@ Add the URL with no key. The client opens a CloudCrane page where you sign in
 assistant can see, make, change, roll back and delete your apps. You can sign an
 assistant out at any time in the dashboard.
 
-Sign-in has been tested with **Claude**, **ChatGPT**, **Cursor** and **Cline**. Exact settings for each are in [`llms-install.md`](llms-install.md), which an
-agent can follow to set it up.
+Sign-in has been tested with **Claude**, **ChatGPT**, **Cursor** and **Cline**. The settings for **Claude Code** and **Antigravity** below follow their own
+docs and haven't been tried end to end yet. Exact settings for each are in [`llms-install.md`](llms-install.md), which an agent can follow to set it up.
 
 **Claude:** Settings → Connectors → Add custom connector with the URL above.
 
 **ChatGPT:** add a custom MCP server with the URL above and choose *OAuth*.
+
+**Claude Code:**
+
+```
+claude mcp add --transport http cloudcrane https://cloudcrane.ai/api/apps/mcp
+```
+
+Then type `/mcp` in Claude Code and pick `cloudcrane` to sign in.
 
 **Cursor** (`~/.cursor/mcp.json`):
 
@@ -51,7 +59,16 @@ agent can follow to set it up.
 
 **Claude plugin:** this repo is also a plugin. It adds nothing but the connection to the server above: no hooks, scripts or local code. What you ask for, and the apps your assistant writes, go to CloudCrane so it can check and host them; what you save in an app stays on your phone.
 
-**Gemini CLI** (an extension, from this repo):
+**Antigravity** (Google's coding app, and `agy` in a terminal), in `~/.gemini/config/mcp_config.json`:
+
+```json
+{ "mcpServers": { "cloudcrane": { "serverUrl": "https://cloudcrane.ai/api/apps/mcp" } } }
+```
+
+Start a new session so it connects. Antigravity signs in through dynamic client registration, so no client ID is needed; in the app, tap
+*Authenticate* next to it under Customizations → Installed → MCP Servers. See [Antigravity's MCP guide](https://antigravity.google/docs/mcp/).
+
+**Gemini CLI** (an extension, from this repo; Antigravity's `agy` has replaced Gemini CLI):
 
 ```
 gemini extensions install https://github.com/cloudcrane-dev/cloudcrane-mcp
