@@ -38,6 +38,31 @@ Add this to `~/.cursor/mcp.json`:
 }
 ```
 
+## Claude Code
+
+Run:
+
+```
+claude mcp add --transport http cloudcrane https://cloudcrane.ai/api/apps/mcp
+```
+
+Then the user types `/mcp` in Claude Code and picks `cloudcrane` to sign in.
+
+## Antigravity (app, IDE and the `agy` CLI)
+
+Add this to `~/.gemini/config/mcp_config.json` (or `<workspace>/.agents/mcp_config.json` for one project):
+
+```json
+{
+  "mcpServers": {
+    "cloudcrane": { "serverUrl": "https://cloudcrane.ai/api/apps/mcp" }
+  }
+}
+```
+
+Do **not** add an `oauth` block: Antigravity registers itself (dynamic client registration). Start a new session so it connects; in the app, the user
+taps **Authenticate** next to it under Customizations → Installed → MCP Servers.
+
 ## What the user does in the browser
 
 1. Signs in to CloudCrane (Google or an emailed code), if not already signed in. Signing up is free at https://cloudcrane.ai.
