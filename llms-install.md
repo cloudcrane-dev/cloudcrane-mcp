@@ -66,17 +66,22 @@ taps **Authenticate** next to it under Customizations → Installed → MCP Serv
 ## What the user does in the browser
 
 1. Signs in to CloudCrane (Google or an emailed code), if not already signed in. Signing up is free at https://cloudcrane.ai.
-2. Picks the workspace. They must be an owner of it.
-3. Clicks **Connect**. The agent can then see, make, change, roll back and delete their apps.
+2. Picks the organisation. The page says what the connection will open there: an owner's opens its apps and its rooms; any other member's opens its rooms alone.
+3. Clicks **Connect**. An owner's agent can then see, make, change, roll back and delete their apps, and use the organisation's rooms as them.
 
 ## Checking it worked
 
-The server should show as connected with **26 tools**: `list_apps`, `get_app`, `find_in_app`, `look_at_app`, `try_app`, `diff_versions`, `get_problems`, `get_spec`, `list_versions`, `list_remixes`, `get_remix`, `search_explore`, `get_stats`, `get_connections`, `get_spec_guide`, `get_design_guide`, `get_port_guide`, `check_publish`, `publish_app`, `update_app`, `publish_spec`, `update_spec`, `rename_app`, `rollback_app`, `delete_app`, `remix_app`, and 5 prompts. A first call to try is `list_apps`, which takes no arguments.
+For an owner, the server should show as connected with **32 tools** and 4 prompts.
+
+- 23 for apps: `list_apps`, `get_app`, `get_problems`, `get_blueprint`, `list_versions`, `list_remixes`, `get_remix`, `get_design_guide`, `check_publish`, `look_at_app`, `diff_versions`, `search_explore`, `get_stats`, `get_connections`, `test_reminders`, `remix_app`, `publish_app`, `update_app`, `rename_app`, `make_public`, `share_app`, `rollback_app`, `delete_app`.
+- 9 for rooms: `list_rooms`, `join_room`, `ask`, `inbox`, `answer`, `post`, `share_file`, `read_file`, `read_thread`.
+
+A member who isn't an owner sees only the 9 rooms tools. A first call to try is `list_apps` (or `list_rooms`), which takes no arguments.
 
 ## If it fails
 
 - **"Unauthorized" before signing in:** expected. It means sign-in hasn't finished yet.
-- **No workspace to pick:** the user doesn't own one. A workspace owner has to connect it.
+- **No organisation to pick:** the user isn't a member of one yet. An owner has to invite them.
 - **"This request has expired or was already decided":** the sign-in page is more than 10 minutes old. Start the connection again from the client.
 - **Connected but 0 tools:** the client fell back to the legacy SSE transport. This server is Streamable HTTP only.
 

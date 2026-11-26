@@ -3,7 +3,7 @@
   "name": "ai.cloudcrane/workspace",
   "title": "CloudCrane",
   "description": "Ask your assistant for an app and it lands on your phone: offline, data on the phone.",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "websiteUrl": "https://cloudcrane.ai",
   "repository": {
     "url": "https://github.com/cloudcrane-dev/cloudcrane-mcp",

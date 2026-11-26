@@ -1,7 +1,7 @@
 {
   "name": "cloudcrane",
   "displayName": "CloudCrane",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Ask Claude for an app and it lands on your phone: offline, with what you save kept on the phone.",
   "author": {
     "name": "CloudCrane",

@@ -1,6 +1,6 @@
 {
   "name": "cloudcrane",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Ask for an app and it lands on your phone: offline, with what you save kept on the phone.",
   "mcpServers": {
     "cloudcrane": {
